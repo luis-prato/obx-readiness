@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Julien Moreau Portfolio — Design System (Wolff Olins Reference) */
+
+@layer base {
+  :root {
+    /* Core palette - Predominantly black and white with accent */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+
+    --primary: 0 0% 4%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 4%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 155 100% 49%; /* Medium Spring #00FB92 */
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 4%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 26%;
+    --sidebar-primary: 0 0% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 91%;
+    --sidebar-ring: 0 0% 60%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 4%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 84%;
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 0 0% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 0 0% 96%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 0 0% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-foreground text-background;
+  }
+}
+
+@layer components {
+  /* Eyebrow label */
+  .eyebrow {
+    @apply text-xs uppercase tracking-[0.15em] font-sans font-medium text-muted-foreground;
+  }
+
+  /* Tag - outline style only (Wolff Olins reference) */
+  .tag {
+    @apply inline-block px-3 py-1.5 text-xs font-sans border border-foreground/20 rounded-full text-muted-foreground transition-colors hover:border-foreground hover:text-foreground bg-transparent;
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply w-full h-px bg-foreground/10;
+  }
+
+  /* Link underline animation */
+  .link-underline {
+    @apply relative inline-block;
+  }
+  
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-px bg-current origin-left scale-x-0 transition-transform duration-300;
+  }
+  
+  .link-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  /* Decorative underline for headlines */
+  .headline-underline {
+    @apply relative inline-block;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  /* Container - consistent padding across all content */
+  .container-narrow {
+    @apply px-6 md:px-12 lg:px-16 max-w-[900px] mx-auto;
+  }
+
+  .container-wide {
+    @apply px-6 md:px-12 lg:px-16;
+  }
+
+  .container-full {
+    @apply px-6 md:px-12 lg:px-16;
+  }
+
+  /* Arrow link style (Wolff Olins) */
+  .arrow-link {
+    @apply inline-flex items-center gap-2 text-sm font-sans;
+  }
+
+  .arrow-link::before {
+    content: '→';
+    @apply transition-transform duration-200;
+  }
+
+  .arrow-link:hover::before {
+    @apply translate-x-1;
+  }
+}
+
+@layer utilities {
+  /* Text balance for headlines */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Smooth image reveal */
+  .image-reveal {
+    @apply overflow-hidden;
+  }
+
+  .image-reveal img {
+    @apply transition-transform duration-700 ease-smooth;
+  }
+
+  .image-reveal:hover img {
+    @apply scale-105;
+  }
+
+  /* Accent background (Medium Spring) */
+  .bg-accent-yellow {
+    background-color: #00FB92;
+  }
+
+  /* Large editorial spacing */
+  .section-spacing {
+    @apply py-24 md:py-32 lg:py-40;
+  }
+
+  .section-spacing-sm {
+    @apply py-16 md:py-24;
+  }
+}
+
+/* Mobile hero height for 812px height devices (iPhone X/XS/11 Pro) */
+@media screen and (max-width: 767px) and (max-height: 812px) {
+  .hero-banner {
+    height: 100vh !important;
+  }
+}
+
+/* Ensure hero is always 100vh on mobile */
+@media screen and (max-width: 767px) {
+  .hero-banner {
+    height: 100vh;
+  }
+}
